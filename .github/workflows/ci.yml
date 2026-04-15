@@ -7,6 +7,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+ 
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,7 +29,6 @@ jobs:
         with:
           context: .
           push: true
-          # ВОТ ЗДЕСЬ ГЛАВНОЕ ИСПРАВЛЕНИЕ:
           tags: |
             ghcr.io/shotings/islabapp:latest
             ghcr.io/shotings/islabapp:${{ github.sha }}

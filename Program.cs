@@ -37,11 +37,11 @@ app.MapGet("/db/ping", async (IConfiguration config) =>
     {
         await using var connection = new Microsoft.Data.SqlClient.SqlConnection(connectionString);
         await connection.OpenAsync();
-        return new { status = "ok", message = "Database connection successful" };
+        return Results.Ok(new { status = "ok", message = "Database connection successful" });
     }
     catch (Exception ex)
     {
-        return new { status = "error", message = ex.Message };
+        return Results.BadRequest(new { status = "error", message = ex.Message });
     }
 });
 // Класс для настроек
